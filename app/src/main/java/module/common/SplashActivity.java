@@ -1,7 +1,7 @@
 package module.common;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 
 import com.example.rxjava.myblibi.R;
@@ -14,6 +14,8 @@ import butterknife.Unbinder;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import utils.ConstantUtil;
+import utils.PreferenceUtil;
 
 /**
  * @author 小陈
@@ -24,11 +26,11 @@ public class SplashActivity extends RxActivity {
     private Unbinder bind;
     
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         bind = ButterKnife.bind(this);
-
+        //LogDog.i("加载SplashActivity页面");
         setUpSplash();
     }
 
@@ -40,16 +42,33 @@ public class SplashActivity extends RxActivity {
                 .subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
-                        
+                        isLogin();
                     }
                 });
         
     }
 
     /**
-     * 判断是否登陆过
+     * 判断是否登录过
      */
     private void isLogin(){
+        boolean isLogin = PreferenceUtil.getBoolean(ConstantUtil.KEY, false);
+        if(isLogin) {
+            //已登录
+            startActivity( new Intent(SplashActivity.this, MainActivity.class));
+            
+        }else {
+            //未登录
+            startActivity( new Intent(SplashActivity.this, LoginActivity.class));
+        }
         
+        SplashActivity.this.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+        bind.unbind();
     }
 }

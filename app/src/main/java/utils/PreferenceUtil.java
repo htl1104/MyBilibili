@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.hotbitmapgg.bilibili.BilibiliApp;
 
 /**
  * Created by hcc on 16/8/4 21:18

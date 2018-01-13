@@ -1,16 +1,13 @@
-package com.example.rxjava.myblibi;
+package module.common;
 
 import android.os.Bundle;
+
+import com.example.rxjava.myblibi.R;
 
 import base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//       
-//    }
+
 
     @Override
     public int getLayoutId() {

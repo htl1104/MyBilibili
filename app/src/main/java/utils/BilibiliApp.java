@@ -1,4 +1,8 @@
+package utils;
+
 import android.app.Application;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
 
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
@@ -11,6 +15,7 @@ import com.squareup.leakcanary.LeakCanary;
 public class BilibiliApp extends Application {
     
     public static BilibiliApp mInstance;
+    public static boolean DEBUG = true;
 
 
     @Override
@@ -31,10 +36,22 @@ public class BilibiliApp extends Application {
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
+        DEBUG = isApkDebugable(this);
+        LogDog.setDebug(DEBUG);
     }
 
     public static BilibiliApp getInstance() {
 
         return mInstance;
+    }
+
+    public static boolean isApkDebugable(Context context) {
+        try {
+            ApplicationInfo info= context.getApplicationInfo();
+            return (info.flags&ApplicationInfo.FLAG_DEBUGGABLE)!=0;
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 }
