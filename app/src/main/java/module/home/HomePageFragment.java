@@ -13,6 +13,7 @@ import com.example.rxjava.myblibi.R;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import adapter.pager.HomePagerAdapter;
 import base.RxLazyFragment;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -21,10 +22,12 @@ import module.entry.GameCentreActivity;
 import module.entry.OffLineDownloadActivity;
 import widget.CircleImageView;
 
+//import android.support.v4.view.ViewPager;
+
 /**
  * @author 小陈
  * @time 2018/1/15  11:00
- * @desc ${TODD}
+ * @desc 首页模块主界面
  */
 public class HomePageFragment extends RxLazyFragment {
 
@@ -80,6 +83,11 @@ public class HomePageFragment extends RxLazyFragment {
     }
 
     private void initViewPager() {
+        HomePagerAdapter mHomeAdapter=new HomePagerAdapter(getChildFragmentManager(),getApplicationContext());
+        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setAdapter(mHomeAdapter);
+        mSlidingTab.setViewPager(mViewPager);
+        mViewPager.setCurrentItem(1);//设置默认的显示item
     }
 
 

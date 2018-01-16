@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import network.api.BiliAppService;
 import network.api.VipService;
 import network.auxiliary.ApiConstants;
 import okhttp3.Cache;
@@ -34,6 +35,12 @@ public class RetrofitHelper {
         initOkHttpClient();
     }
 
+
+
+    public static BiliAppService getBiliAppAPI() {
+
+        return createApi(BiliAppService.class, ApiConstants.APP_BASE_URL);
+    }
 
     public static VipService getVipAPI() {
 

@@ -99,8 +99,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void initFragments() {
 
         mHomePageFragment = HomePageFragment.newInstance();
-       IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
-         HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
+        IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
+        HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
         AttentionPeopleFragment mAttentionPeopleFragment = AttentionPeopleFragment.newInstance();
         ConsumeHistoryFragment mConsumeHistoryFragment = ConsumeHistoryFragment.newInstance();
         SettingFragment mSettingFragment = SettingFragment.newInstance();
