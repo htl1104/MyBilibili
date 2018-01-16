@@ -135,6 +135,8 @@ public class GameCentreActivity extends BaseActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        mToolbar.setNavigationOnClickListener(v -> finish());
+
     }
 
     @Override

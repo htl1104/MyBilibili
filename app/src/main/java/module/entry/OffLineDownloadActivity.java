@@ -1,7 +1,6 @@
 package module.entry;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
 import android.view.Menu;
@@ -65,10 +64,8 @@ public class OffLineDownloadActivity extends BaseActivity {
 
         mToolbar.setTitle("离线下载");
         setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
+        mToolbar.setNavigationOnClickListener(v -> finish());
 
     }
 

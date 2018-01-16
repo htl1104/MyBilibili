@@ -1,11 +1,14 @@
 package module.common;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,13 @@ import com.example.rxjava.myblibi.R;
 
 import base.BaseActivity;
 import butterknife.BindView;
+import module.entry.AttentionPeopleFragment;
+import module.entry.ConsumeHistoryFragment;
+import module.entry.HistoryFragment;
+import module.entry.IFavoritesFragment;
+import module.entry.OffLineDownloadActivity;
+import module.entry.SettingFragment;
+import module.entry.VipActivity;
 import module.home.HomePageFragment;
 import utils.ConstantUtil;
 import utils.PreferenceUtil;
@@ -89,19 +99,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void initFragments() {
 
         mHomePageFragment = HomePageFragment.newInstance();
-       /* IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
-        HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
+       IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
+         HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
         AttentionPeopleFragment mAttentionPeopleFragment = AttentionPeopleFragment.newInstance();
         ConsumeHistoryFragment mConsumeHistoryFragment = ConsumeHistoryFragment.newInstance();
-        SettingFragment mSettingFragment = SettingFragment.newInstance();*/
+        SettingFragment mSettingFragment = SettingFragment.newInstance();
 
         fragments = new Fragment[] {
                 mHomePageFragment,
-             /*   mFavoritesFragment,
-                mHistoryFragment,
+               mFavoritesFragment,
+                 mHistoryFragment,
                 mAttentionPeopleFragment,
                 mConsumeHistoryFragment,
-                mSettingFragment*/
+                mSettingFragment
         };
 
         // 添加显示第一个fragment
@@ -178,6 +188,85 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mDrawerLayout.closeDrawer(Gravity.START);
+        switch (item.getItemId()) {
+            case  R.id.item_home:
+                //主页
+                changeFragmentIndex(item, 0);
+                return true;
+            case R.id.item_download:
+                // 离线缓存
+                startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
+                return true;
+            case R.id.item_vip:
+                //大会员
+                startActivity(new Intent(MainActivity.this, VipActivity.class));
+                return true;
+            case R.id.item_favourite:
+                //我的收藏
+                changeFragmentIndex(item, 1);
+                return true;
+
+            case R.id.item_history:
+                // 历史记录
+                changeFragmentIndex(item, 2);
+                return true;
+
+            case R.id.item_group:
+                // 关注的人
+                changeFragmentIndex(item, 3);
+                return true;
+
+            case R.id.item_tracker:
+                // 我的钱包
+                changeFragmentIndex(item, 4);
+                return true;
+
+            case R.id.item_app:
+                // 应用推荐
+
+                return true;
+
+            case R.id.item_theme:
+                // 主题选择
+                // CardPickerDialog dialog = new CardPickerDialog();
+                // dialog.setClickListener(this);
+                // dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
+                return true;
+
+
+            case R.id.item_settings:
+                // 设置中心
+                changeFragmentIndex(item, 5);
+                return true;
+
+
+
+
+
+        }
         return false;
+    }
+
+    /**
+     * 切换Fragment的下标
+     */
+    private void changeFragmentIndex(MenuItem item, int currentIndex) {
+        index=currentIndex;
+        switchFragment();
+        item.setChecked(true);
+    }
+    
+    /**
+     * Fragment切换
+     */
+    private void switchFragment() {
+        FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+        trx.hide(fragments[currentTabIndex]);
+        if (!fragments[index].isAdded()) {
+            trx.add(R.id.container, fragments[index]);
+        }
+        trx.show(fragments[index]).commit();
+        currentTabIndex = index; 
     }
 }

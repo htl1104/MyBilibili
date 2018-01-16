@@ -38,7 +38,10 @@
         <item name="progress_reached_bar_height">20dp</item>
         <item name="progress_unreached_bar_height">20dp</item>
     </style>
-    
+
+    <style name="CollapsingToolbarTitleStyle.About" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
     
     <!--ToolBar TextSize style-->
     <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

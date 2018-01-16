@@ -46,6 +46,16 @@
         <activity android:name="module.entry.OffLineDownloadActivity"
                   android:screenOrientation="portrait"/>
         
+        <!--大会员页面 -->
+        <activity android:name="module.entry.VipActivity"
+                  android:screenOrientation="portrait"/>
+        
+        <activity android:name="module.common.HotBitmapGGInfoActivity"
+                  android:screenOrientation="portrait"/>
+        
+        <activity android:name="module.common.AppIntroduceActivity"
+                  android:screenOrientation="portrait"/>
+        
         
     </application>
     
