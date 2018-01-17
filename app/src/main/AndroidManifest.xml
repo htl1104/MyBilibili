@@ -34,6 +34,7 @@
                   android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
         />
 
+        <!-- portrait 当我们切换横竖屏的时候，屏幕的内容始终以竖屏显示，而不会根据屏幕的方向来显示内容-->
         <!-- 登录界面 -->
         <activity android:name="module.common.LoginActivity"
                   android:screenOrientation="portrait"/>
@@ -50,11 +51,23 @@
         <activity android:name="module.entry.VipActivity"
                   android:screenOrientation="portrait"/>
         
+        <!--关于我-->
         <activity android:name="module.common.HotBitmapGGInfoActivity"
                   android:screenOrientation="portrait"/>
-        
+        <!--关于Bilibili-->
         <activity android:name="module.common.AppIntroduceActivity"
                   android:screenOrientation="portrait"/>
+        
+        <!--分区直播页面-->
+        <activity android:name="module.common.LiveAppIndexActivity"
+                  android:screenOrientation="portrait"
+        />
+        
+        <!--直播播放界面-->
+        <activity android:name="module.home.LivePlayerActivity"
+                  android:screenOrientation="portrait"
+        />
+        
         
         
     </application>
