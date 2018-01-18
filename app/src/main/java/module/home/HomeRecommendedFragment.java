@@ -14,6 +14,7 @@ import java.util.List;
 
 import adapter.section.HomeRecommendBannerSection;
 import adapter.section.HomeRecommendTopicSection;
+import adapter.section.HomeRecommendedSection;
 import base.RxLazyFragment;
 import butterknife.BindView;
 import module.entry.recommend.RecommendBannerInfo;
@@ -173,16 +174,16 @@ public class HomeRecommendedFragment extends RxLazyFragment {
                     case ConstantUtil.TYPE_ACTIVITY_CENTER:
                         //活动中心
 //                        mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
-//                                getActivity(),
-//                                results.get(i).getBody()));
-                        break;
+//                            getActivity(),
+//                            results.get(i).getBody()));
+//                        break;
                     default:
-//                        mSectionedAdapter.addSection(new HomeRecommendedSection(
-//                                getActivity(),
-//                                results.get(i).getHead().getTitle(),
-//                                results.get(i).getType(),
-//                                results.get(1).getHead().getCount(),
-//                                results.get(i).getBody()));
+                        mSectionedAdapter.addSection(new HomeRecommendedSection(
+                                getActivity(),
+                                results.get(i).getHead().getTitle(),
+                                results.get(i).getType(),
+                                results.get(1).getHead().getCount(),
+                                results.get(i).getBody()));
                         break;
                 }
             }

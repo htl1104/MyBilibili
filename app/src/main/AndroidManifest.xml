@@ -68,7 +68,10 @@
                   android:screenOrientation="portrait"
         />
         
-        
+        <!--视频详情界面-->
+        <activity android:name="module.video.VideoDetailsActivity"
+                  android:screenOrientation="portrait"
+        />
         
     </application>
     
