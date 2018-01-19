@@ -12,10 +12,14 @@ import java.util.ArrayList;
 
 import adapter.VideoCommentAdapter;
 import adapter.VideoHotCommentAdapter;
+import adapter.helper.EndlessRecyclerOnScrollListener;
 import adapter.helper.HeaderViewRecyclerAdapter;
 import base.RxLazyFragment;
 import butterknife.BindView;
 import entity.video.VideoCommentInfo;
+import network.RetrofitHelper;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import utils.ConstantUtil;
 
 /**
@@ -84,7 +88,7 @@ public class VideoCommentFragment extends RxLazyFragment {
         mRecyclerView.setAdapter(mAdapter);
         createHeadView();
         createLoadMoreView();
-/*        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager) {
+        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager) {
 
             @Override
             public void onLoadMore(int i) {
@@ -93,7 +97,7 @@ public class VideoCommentFragment extends RxLazyFragment {
                 loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
-        });*/
+        });
     }
 
 
@@ -101,27 +105,27 @@ public class VideoCommentFragment extends RxLazyFragment {
     protected void loadData() {
 
         int ver = 3;
-//        RetrofitHelper.getBiliAPI()
-//                .getVideoComment(aid, pageNum, pageSize, ver)
-//                .compose(this.bindToLifecycle())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(videoComment -> {
-//
-//                    ArrayList<VideoCommentInfo.List> list = videoComment.list;
-//                    ArrayList<VideoCommentInfo.HotList> hotList = videoComment.hotList;
-//                    if (list.size() < pageSize) {
-//                        loadMoreView.setVisibility(View.GONE);
-//                        mAdapter.removeFootView();
-//                    }
-//                    comments.addAll(list);
-//                    hotComments.addAll(hotList);
-//                    finishTask();
-//                }, throwable -> {
-//
-//                    loadMoreView.setVisibility(View.GONE);
-//                    headView.setVisibility(View.GONE);
-//                });
+        RetrofitHelper.getBiliAPI()
+                .getVideoComment(aid, pageNum, pageSize, ver)
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(videoComment -> {
+
+                    ArrayList<VideoCommentInfo.List> list = videoComment.list;
+                    ArrayList<VideoCommentInfo.HotList> hotList = videoComment.hotList;
+                    if (list.size() < pageSize) {
+                        loadMoreView.setVisibility(View.GONE);
+                        mAdapter.removeFootView();
+                    }
+                    comments.addAll(list);
+                    hotComments.addAll(hotList);
+                    finishTask();
+                }, throwable -> {
+
+                    loadMoreView.setVisibility(View.GONE);
+                    headView.setVisibility(View.GONE);
+                });
     }
 
 

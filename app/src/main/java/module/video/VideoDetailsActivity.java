@@ -30,6 +30,7 @@ import base.BaseActivity;
 import butterknife.BindView;
 import entity.video.VideoDetailsInfo;
 import entity.video.VideoIntroductionFragment;
+import module.common.VideoPlayerActivity;
 import network.RetrofitHelper;
 import network.auxiliary.UrlHelper;
 import rx.android.schedulers.AndroidSchedulers;
@@ -122,9 +123,9 @@ public class VideoDetailsActivity extends BaseActivity {
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
         
-        //视频详情页面
-//        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this,
-//                mVideoDetailsInfo.getPages().get(0).getCid(), mVideoDetailsInfo.getTitle()));
+        //视频播放页面
+        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this,
+                mVideoDetailsInfo.getPages().get(0).getCid(), mVideoDetailsInfo.getTitle()));
 
     }
 
@@ -170,9 +171,10 @@ public class VideoDetailsActivity extends BaseActivity {
                     .dontAnimate()
                     .into(mVideoPreview);
         }
-
+        //视频简介界面
         VideoIntroductionFragment mVideoIntroductionFragment = VideoIntroductionFragment.newInstance(
                 av);
+        //视频评论界面
         VideoCommentFragment mVideoCommentFragment = VideoCommentFragment.newInstance(av);
 
         fragments.add(mVideoIntroductionFragment);

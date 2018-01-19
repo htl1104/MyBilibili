@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import network.api.BiliApiService;
 import network.api.BiliAppService;
+import network.api.BiliGoService;
 import network.api.LiveService;
 import network.api.VipService;
 import network.auxiliary.ApiConstants;
@@ -40,6 +42,16 @@ public class RetrofitHelper {
     public static LiveService getLiveAPI() {
 
         return createApi(LiveService.class, ApiConstants.LIVE_BASE_URL);
+    }
+
+    public static BiliApiService getBiliAPI() {
+
+        return createApi(BiliApiService.class, ApiConstants.API_BASE_URL);
+    }
+
+    public static BiliGoService getBiliGoAPI() {
+
+        return createApi(BiliGoService.class, ApiConstants.BILI_GO_BASE_URL);
     }
 
 

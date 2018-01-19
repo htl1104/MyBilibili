@@ -72,6 +72,15 @@
         <activity android:name="module.video.VideoDetailsActivity"
                   android:screenOrientation="portrait"
         />
+        <!--播放界面-->
+        <activity android:name="module.common.VideoPlayerActivity"
+                  android:screenOrientation="portrait"
+        />
+        
+        <!--浏览器页面-->
+        <activity android:name="module.common.BrowserActivity"
+                  android:screenOrientation="portrait"
+        />
         
     </application>
     
