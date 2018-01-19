@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import network.api.BangumiService;
 import network.api.BiliApiService;
 import network.api.BiliAppService;
 import network.api.BiliGoService;
@@ -52,6 +53,11 @@ public class RetrofitHelper {
     public static BiliGoService getBiliGoAPI() {
 
         return createApi(BiliGoService.class, ApiConstants.BILI_GO_BASE_URL);
+    }
+
+    public static BangumiService getBangumiAPI() {
+
+        return createApi(BangumiService.class, ApiConstants.BANGUMI_BASE_URL);
     }
 
 

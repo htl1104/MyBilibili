@@ -109,7 +109,7 @@ public class HomeRecommendedFragment extends RxLazyFragment {
         });
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mSectionedAdapter);
-        //setRecycleNoScroll();
+        setRecycleNoScroll();
      
     }
 
@@ -244,4 +244,8 @@ public class HomeRecommendedFragment extends RxLazyFragment {
         mSectionedAdapter.removeAllSections();
     }
 
+    private void setRecycleNoScroll() {
+
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
+    }
 }

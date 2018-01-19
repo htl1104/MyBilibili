@@ -82,6 +82,26 @@
                   android:screenOrientation="portrait"
         />
         
+        <!--追番界面-->
+        <activity android:name="entity.bangumi.ChaseBangumiActivity"
+                  android:screenOrientation="portrait"
+        />
+        
+        <!--番剧时间表界面-->
+        <activity android:name="entity.bangumi.BangumiScheduleActivity"
+                  android:screenOrientation="portrait"
+        />
+        <!--番剧索引界面-->
+        <activity android:name="entity.bangumi.BangumiIndexActivity"
+                  android:screenOrientation="portrait"
+        />
+        
+        <!--新番连载全部界面-->
+        <activity android:name="module.home.NewBangumiSerialActivity"
+                  android:screenOrientation="portrait"
+        />
+
+
     </application>
     
 
