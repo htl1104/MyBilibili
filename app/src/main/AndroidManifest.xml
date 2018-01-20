@@ -100,7 +100,10 @@
         <activity android:name="module.home.NewBangumiSerialActivity"
                   android:screenOrientation="portrait"
         />
-
+        
+        <!--更多新番列表界面-->
+        <activity android:name="module.home.bangumi.SeasonNewBangumiActivity"
+                  android:screenOrientation="portrait"/>
 
     </application>
     

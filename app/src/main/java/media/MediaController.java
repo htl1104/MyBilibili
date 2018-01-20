@@ -30,6 +30,7 @@ import java.util.Locale;
 import media.callback.DanmukuSwitchListener;
 import media.callback.MediaPlayerListener;
 import media.callback.VideoBackListener;
+import utils.LogDog;
 
 /**
  * Created by hcc on 16/8/31 19:50
@@ -475,7 +476,7 @@ public class MediaController extends FrameLayout {
           mWindow.dismiss();
         }
       } catch (IllegalArgumentException ex) {
-        utils.LogUtil.all("MediaController already removed");
+        LogDog.e("MediaController already removed");
       }
       mShowing = false;
       if (mHiddenListener != null) {

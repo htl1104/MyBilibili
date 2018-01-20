@@ -1,4 +1,4 @@
-package module.home;
+package module.home.bangumi;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,11 +11,14 @@ import com.example.rxjava.myblibi.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.HomeBangumiNewSerialSection;
 import adapter.section.HomeBangumiBannerSection;
+import adapter.section.HomeBangumiBobySection;
 import adapter.section.HomeBangumiItemSection;
+import adapter.section.HomeBangumiRecommendSection;
+import adapter.section.HomeBangumiSeasonNewSection;
 import base.RxLazyFragment;
 import butterknife.BindView;
-import adapter.HomeBangumiNewSerialSection;
 import entity.bangumi.BangumiAppIndexInfo;
 import entity.bangumi.BangumiRecommendInfo;
 import network.RetrofitHelper;
@@ -23,6 +26,7 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import utils.LogDog;
 import utils.SnackbarUtil;
 import widget.CustomEmptyView;
 import widget.banner.BannerEntity;
@@ -149,7 +153,9 @@ public class HomeBangumiFragment extends RxLazyFragment {
                     public Observable<BangumiRecommendInfo> call(BangumiAppIndexInfo bangumiAppIndexInfo) {
 
                         banners.addAll(bangumiAppIndexInfo.getResult().getAd().getHead());
+                        LogDog.i("banners="+banners.size());
                         bangumibobys.addAll(bangumiAppIndexInfo.getResult().getAd().getBody());
+                        LogDog.i("bangumibobys="+bangumibobys.size());
                         seasonNewBangumis.addAll(bangumiAppIndexInfo.getResult().getPrevious().getList());
                         season = bangumiAppIndexInfo.getResult().getPrevious().getSeason();
                         newBangumiSerials.addAll(bangumiAppIndexInfo.getResult().getSerializing());
@@ -187,15 +193,19 @@ public class HomeBangumiFragment extends RxLazyFragment {
         
           mSectionedRecyclerViewAdapter.addSection(
                 new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
+          
+        LogDog.i("bangumibobys="+bangumibobys.isEmpty());
         
-       /*if (!bangumibobys.isEmpty()) {
+       if (!bangumibobys.isEmpty()) {
+           LogDog.i("bangumibobys="+bangumibobys.size());
             mSectionedRecyclerViewAdapter.addSection(
                     new HomeBangumiBobySection(getActivity(), bangumibobys));
         }
-       mSectionedRecyclerViewAdapter.addSection(
-                new HomeBangumiSeasonNewSection(getActivity(), season, seasonNewBangumis));
+      
         mSectionedRecyclerViewAdapter.addSection(
-                new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));*/
+                new HomeBangumiSeasonNewSection(getActivity(), season, seasonNewBangumis));
+         mSectionedRecyclerViewAdapter.addSection(
+                new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 

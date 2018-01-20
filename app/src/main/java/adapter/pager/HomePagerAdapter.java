@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.rxjava.myblibi.R;
 
-import module.home.HomeAttentionFragment;
-import module.home.HomeBangumiFragment;
+import module.home.attention.HomeAttentionFragment;
+import module.home.bangumi.HomeBangumiFragment;
 import module.home.HomeDiscoverFragment;
 import module.home.HomeLiveFragment;
 import module.home.HomeRecommendedFragment;

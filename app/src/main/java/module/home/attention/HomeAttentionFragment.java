@@ -1,4 +1,4 @@
-package module.home;
+package module.home.attention;
 
 import android.os.Bundle;
 
