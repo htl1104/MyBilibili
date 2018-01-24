@@ -50,7 +50,7 @@ public class HomeRecommendedFragment extends RxLazyFragment {
 
     private List<BannerEntity> banners = new ArrayList<>();
 
-    private boolean mIsRefreshing = false;
+    private boolean mIsRefreshing = false;//刷新的状态
 
 
     private SectionedRecyclerViewAdapter mSectionedAdapter;

@@ -1,4 +1,4 @@
-package adapter;
+package adapter.section;
 
 import android.content.Context;
 import android.content.Intent;

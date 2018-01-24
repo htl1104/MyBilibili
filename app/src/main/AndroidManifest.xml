@@ -105,6 +105,11 @@
         <activity android:name="module.home.bangumi.SeasonNewBangumiActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--分区类型详情界面-->
+        <activity android:name="module.home.region.RegionTypeDetailsActivity"
+                  android:screenOrientation="portrait"
+        />
+
     </application>
     
 

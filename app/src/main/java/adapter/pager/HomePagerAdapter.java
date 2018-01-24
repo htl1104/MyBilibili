@@ -38,22 +38,22 @@ public class HomePagerAdapter extends FragmentPagerAdapter{
 
         if (fragments[position] == null) {
             switch (position) {
-                case 0:
+                case 0://直播
                     fragments[position] = HomeLiveFragment.newInstance();
                     break;
-                case 1:
+                case 1://推荐
                     fragments[position] = HomeRecommendedFragment.newInstance();
                     break;
-                case 2:
+                case 2://番剧
                     fragments[position] = HomeBangumiFragment.newInstance();
                     break;
-                case 3:
+                case 3://分区
                     fragments[position] = HomeRegionFragment.newInstance();
                     break;
-                case 4:
+                case 4://关注
                     fragments[position] = HomeAttentionFragment.newInstance();
                     break;
-                case 5:
+                case 5://发现
                     fragments[position] = HomeDiscoverFragment.newInstance();
                     break;
                 default:

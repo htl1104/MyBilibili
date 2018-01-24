@@ -1,5 +1,6 @@
 package network.api;
 
+import entity.region.RegionRecommendInfo;
 import entity.video.VideoDetailsInfo;
 import module.entry.recommend.RecommendBannerInfo;
 import module.entry.recommend.RecommendInfo;
@@ -32,5 +33,11 @@ public interface BiliAppService {
     @GET("x/view?access_key=19946e1ef3b5cad1a756c475a67185bb&actionKey=appkey&appkey=27eb53fc9058f8c3&build=3940&device=phone&mobi_app=iphone&platform=ios&sign=1206255541e2648c1badb87812458046&ts=1478349831")
     Observable<VideoDetailsInfo> getVideoDetails(@Query("aid") int aid);
 
+
+    /**
+     * 分区推荐
+     */
+    @GET("x/v2/region/show?access_key=67cbf6a1e9ad7d7f11bfbd918e50c837&actionKey=appkey&appkey=27eb53fc9058f8c3&build=3600&device=phone&mobi_app=iphone&plat=1&platform=ios&sign=959d7b8c09c65e7a66f7e58b1a2bdab9&ts=1472310694")
+    Observable<RegionRecommendInfo> getRegionRecommends(@Query("rid") int rid);
 
 }

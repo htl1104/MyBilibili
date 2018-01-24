@@ -11,7 +11,7 @@ import com.example.rxjava.myblibi.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.HomeBangumiNewSerialSection;
+import adapter.section.HomeBangumiNewSerialSection;
 import adapter.section.HomeBangumiBannerSection;
 import adapter.section.HomeBangumiBobySection;
 import adapter.section.HomeBangumiItemSection;
@@ -187,25 +187,43 @@ public class HomeBangumiFragment extends RxLazyFragment {
                 .forEach(bannersBean -> bannerList.add(new BannerEntity(
                         bannersBean.getLink(), bannersBean.getTitle(), bannersBean.getImg())));
 
+        /**
+         * 添加轮播图的Section
+         */
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBannerSection(bannerList));
-        
+
+        /**
+         * 首页番剧顶部追番，放送表，索引条目Section
+         */
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
-        
-          mSectionedRecyclerViewAdapter.addSection(
-                new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
+
+        /**
+         * 首页番剧新番连载Section
+         */
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
           
         LogDog.i("bangumibobys="+bangumibobys.isEmpty());
         
        if (!bangumibobys.isEmpty()) {
            LogDog.i("bangumibobys="+bangumibobys.size());
+           /**
+            * 首页番剧界面内容Section
+            */
             mSectionedRecyclerViewAdapter.addSection(
                     new HomeBangumiBobySection(getActivity(), bangumibobys));
         }
-      
+
+        /**
+         * 首页番剧分季新番Section
+         */
         mSectionedRecyclerViewAdapter.addSection(
                 new HomeBangumiSeasonNewSection(getActivity(), season, seasonNewBangumis));
-         mSectionedRecyclerViewAdapter.addSection(
+        /**
+         * 首页番剧推荐Section
+         */
+        mSectionedRecyclerViewAdapter.addSection(
                 new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));
+        
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 

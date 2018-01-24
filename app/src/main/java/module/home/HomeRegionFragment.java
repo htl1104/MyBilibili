@@ -1,18 +1,34 @@
 package module.home;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.rxjava.myblibi.R;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import adapter.HomeRegionItemAdapter;
 import adapter.helper.AbsRecyclerViewAdapter;
 import base.RxLazyFragment;
 import butterknife.BindView;
+import entity.region.RegionTypesInfo;
 import module.common.LiveAppIndexActivity;
 import module.entry.GameCentreActivity;
+import module.home.region.RegionTypeDetailsActivity;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * @author 小陈
@@ -24,6 +40,8 @@ public class HomeRegionFragment extends RxLazyFragment {
 
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
+
+    private List<RegionTypesInfo.DataBean> regionTypes = new ArrayList<>();
     
     public static HomeRegionFragment newInstance(){
         return new HomeRegionFragment();
@@ -42,9 +60,55 @@ public class HomeRegionFragment extends RxLazyFragment {
 
     @Override
     protected void loadData() {
-        super.loadData();
+        Observable.just(readAssetsJson())
+                .compose(bindToLifecycle())
+                .map(new Func1<String, RegionTypesInfo>() {
+                    @Override
+                    public RegionTypesInfo call(String s) {
+                        return new Gson().fromJson(s,RegionTypesInfo.class);
+                    }
+                })
+                .map(new Func1<RegionTypesInfo, List<RegionTypesInfo.DataBean>>() {
+
+                    @Override
+                    public List<RegionTypesInfo.DataBean> call(RegionTypesInfo regionTypesInfo) {
+                        return regionTypesInfo.getData();
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<RegionTypesInfo.DataBean>>() {
+                    @Override
+                    public void call(List<RegionTypesInfo.DataBean> dataBeans) {
+                        regionTypes.addAll(dataBeans);
+                        finishTask();
+                    }
+                },throwable -> {
+                    
+                });
     }
 
+   
+
+    /**
+     * 读取assets下的json数据
+     */
+    private String readAssetsJson() {
+        AssetManager assetManager = getActivity().getAssets();
+        try {
+            InputStream is = assetManager.open("region.json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder stringBuilder = new StringBuilder();
+            String str;
+            while ((str = br.readLine()) != null) {
+                stringBuilder.append(str);
+            }
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     @Override
     protected void initRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
@@ -61,13 +125,13 @@ public class HomeRegionFragment extends RxLazyFragment {
                         startActivity(new Intent(getActivity(), LiveAppIndexActivity.class));
                         break;
 
-                 /*   case 1:
+                    case 1:
                         //番剧
                         RegionTypesInfo.DataBean mBangumi = regionTypes.get(1);
                         RegionTypeDetailsActivity.launch(getActivity(), mBangumi);
                         break;
 
-                    case 2:
+                   /* case 2:
                         //动画
                         RegionTypesInfo.DataBean mAnimation = regionTypes.get(2);
                         RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
