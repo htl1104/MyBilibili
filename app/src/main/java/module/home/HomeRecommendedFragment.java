@@ -157,6 +157,7 @@ public class HomeRecommendedFragment extends RxLazyFragment {
         mIsRefreshing = false;
         hideEmptyView();
         convertBanner();
+        //轮播图Section
         mSectionedAdapter.addSection(new HomeRecommendBannerSection(banners));
 
         int size = results.size();
@@ -177,7 +178,7 @@ public class HomeRecommendedFragment extends RxLazyFragment {
 //                            getActivity(),
 //                            results.get(i).getBody()));
 //                        break;
-                    default:
+                    default://推荐界面Section
                         mSectionedAdapter.addSection(new HomeRecommendedSection(
                                 getActivity(),
                                 results.get(i).getHead().getTitle(),

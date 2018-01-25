@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.section.RegionRecommendBannerSection;
+import adapter.section.RegionRecommendDynamicSection;
+import adapter.section.RegionRecommendHotSection;
+import adapter.section.RegionRecommendNewSection;
 import adapter.section.RegionRecommendTypesSection;
 import base.RxLazyFragment;
 import butterknife.BindView;
@@ -133,8 +136,17 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
        
        //添加分区推荐界面轮播图Section
        mSectionedAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
-       //添加分区
+       //添加分区推荐分类section
        mSectionedAdapter.addSection(new RegionRecommendTypesSection(getActivity(),rid));
+       //添加分区推荐热门推荐section
+       mSectionedAdapter.addSection(new RegionRecommendHotSection(getActivity(), rid, recommends));
+       //添加分区推荐最新视频section
+       mSectionedAdapter.addSection(
+                new RegionRecommendNewSection(getActivity(), ConstantUtil.ADVERTISING_RID,news));
+       //添加分区推荐全区动态section
+        mSectionedAdapter.addSection(
+                new RegionRecommendDynamicSection(getActivity(), dynamics));
+        
        mSectionedAdapter.notifyDataSetChanged();
     }
 

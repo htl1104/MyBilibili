@@ -10,6 +10,7 @@ import com.example.rxjava.myblibi.R;
 import adapter.RegionRecommendTypeAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.RxBus;
 import widget.sectioned.StatelessSection;
 
 /**
@@ -171,10 +172,7 @@ public class RegionRecommendTypesSection extends StatelessSection{
        TopicViewHolder viewHolder= (TopicViewHolder) holder;
        viewHolder.mRecyclerView.setHasFixedSize(false);
        viewHolder.mRecyclerView.setNestedScrollingEnabled(false);
-        setRecyclerAdapter(viewHolder);
-       
-     
-       
+       setRecyclerAdapter(viewHolder);
     }
 
     private void setRecyclerAdapter(TopicViewHolder topicViewHolder) {
@@ -184,10 +182,11 @@ public class RegionRecommendTypesSection extends StatelessSection{
                 GridLayoutManager layoutManager=new GridLayoutManager(mContext,4);
                 topicViewHolder.mRecyclerView.setLayoutManager(layoutManager);
                 adapter=new RegionRecommendTypeAdapter(bangumiIcons,bangumiTitles,topicViewHolder.mRecyclerView);
-               
                 break;
         }
         topicViewHolder.mRecyclerView.setAdapter(adapter);
+        assert adapter != null;
+        adapter.setOnItemClickListener((position, holder) -> RxBus.getInstance().post(position));
       
     }
 

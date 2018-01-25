@@ -42,6 +42,7 @@ public class RegionRecommendTypeAdapter extends AbsRecyclerViewAdapter {
             itemViewHolder.mItemIcon.setImageResource(bangumiIcons[position]);
             itemViewHolder.mItemText.setText(bangumiTitles[position]);
         }
+        super.onBindViewHolder(holder, position);
     }
 
     @Override

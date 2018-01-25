@@ -20,6 +20,8 @@ import base.BaseActivity;
 import butterknife.BindView;
 import entity.region.RegionTypesInfo;
 import rx.Observable;
+import rx.RxBus;
+import rx.android.schedulers.AndroidSchedulers;
 import utils.ConstantUtil;
 import widget.NoScrollViewPager;
 
@@ -56,6 +58,14 @@ public class RegionTypeDetailsActivity extends BaseActivity {
         }
         
         initViewPager();
+        initRxBus();
+    }
+
+    private void initRxBus() {
+        RxBus.getInstance().toObserverable(Integer.class)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::switchPager);
     }
 
     private void initViewPager() {
@@ -118,4 +128,36 @@ public class RegionTypeDetailsActivity extends BaseActivity {
         activity.startActivity(mIntent);
     }
 
+    private void switchPager(int position) {
+
+        switch (position) {
+            case 0:
+                mViewPager.setCurrentItem(1);
+                break;
+
+            case 1:
+                mViewPager.setCurrentItem(2);
+                break;
+
+            case 2:
+                mViewPager.setCurrentItem(3);
+                break;
+
+            case 3:
+                mViewPager.setCurrentItem(4);
+                break;
+
+            case 4:
+                mViewPager.setCurrentItem(5);
+                break;
+
+            case 5:
+                mViewPager.setCurrentItem(6);
+                break;
+
+            case 6:
+                mViewPager.setCurrentItem(7);
+                break;
+        }
+    }
 }
