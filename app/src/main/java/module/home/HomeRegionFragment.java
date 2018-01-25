@@ -131,7 +131,7 @@ public class HomeRegionFragment extends RxLazyFragment {
                         RegionTypeDetailsActivity.launch(getActivity(), mBangumi);
                         break;
 
-                   /* case 2:
+                  case 2:
                         //动画
                         RegionTypesInfo.DataBean mAnimation = regionTypes.get(2);
                         RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
@@ -200,7 +200,7 @@ public class HomeRegionFragment extends RxLazyFragment {
                         //电视剧
                         RegionTypesInfo.DataBean mTv = regionTypes.get(12);
                         RegionTypeDetailsActivity.launch(getActivity(), mTv);
-                        break;*/
+                        break;
 
                     case 14:
                         // 游戏中心

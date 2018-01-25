@@ -109,7 +109,10 @@
         <activity android:name="module.home.region.RegionTypeDetailsActivity"
                   android:screenOrientation="portrait"
         />
-
+        
+        <!--分区广告界面-->
+        <activity android:name="module.home.AdvertisingActivity"
+                  android:screenOrientation="portrait"/>
     </application>
     
 

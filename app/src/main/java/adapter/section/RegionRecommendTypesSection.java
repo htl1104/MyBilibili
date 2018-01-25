@@ -175,18 +175,85 @@ public class RegionRecommendTypesSection extends StatelessSection{
        setRecyclerAdapter(viewHolder);
     }
 
-    private void setRecyclerAdapter(TopicViewHolder topicViewHolder) {
-        RegionRecommendTypeAdapter adapter=null;
+    private void setRecyclerAdapter(TopicViewHolder typesViewHolder) {
+        RegionRecommendTypeAdapter mAdapter=null;
         switch (rid){
             case 13://番剧
                 GridLayoutManager layoutManager=new GridLayoutManager(mContext,4);
-                topicViewHolder.mRecyclerView.setLayoutManager(layoutManager);
-                adapter=new RegionRecommendTypeAdapter(bangumiIcons,bangumiTitles,topicViewHolder.mRecyclerView);
+                typesViewHolder.mRecyclerView.setLayoutManager(layoutManager);
+                mAdapter=new RegionRecommendTypeAdapter(bangumiIcons,bangumiTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 1:
+                //动画
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( animationIcons,
+                        animationTitles,typesViewHolder.mRecyclerView);
+                break;
+
+            case 3:
+                //音乐
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( musicIcons,
+                        musicTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 129:
+                //舞蹈
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+                mAdapter = new RegionRecommendTypeAdapter( danceIcons,
+                        danceTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 4:
+                //游戏
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( gameIcons,
+                        gameTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 36:
+                //科技
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( scienceIcons,
+                        scienceTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 160:
+                //生活
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( lifeIcons,
+                        lifeTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 119:
+                //鬼畜
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( kichikuIcons,
+                        kichikuTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 155:
+                //时尚
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( fashionIcons,
+                        fashionTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 5:
+                //娱乐
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+                mAdapter = new RegionRecommendTypeAdapter(
+                        entertainmentIcons, entertainmentTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 23:
+                //电影
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter( movieIcons,
+                        movieTitles,typesViewHolder.mRecyclerView);
+                break;
+            case 11:
+                //电视剧
+                typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+                mAdapter = new RegionRecommendTypeAdapter(tvIcons,
+                        tvTitles,typesViewHolder.mRecyclerView);
                 break;
         }
-        topicViewHolder.mRecyclerView.setAdapter(adapter);
-        assert adapter != null;
-        adapter.setOnItemClickListener((position, holder) -> RxBus.getInstance().post(position));
+        typesViewHolder.mRecyclerView.setAdapter(mAdapter);
+        assert mAdapter != null;
+        mAdapter.setOnItemClickListener((position, holder) -> RxBus.getInstance().post(position));
       
     }
 
