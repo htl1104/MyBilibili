@@ -13,10 +13,10 @@ import com.example.rxjava.myblibi.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.section.AdvertisingDynamicSection;
-import adapter.section.AdvertisingHotSection;
-import adapter.section.AdvertisingNewSection;
 import adapter.section.RegionRecommendBannerSection;
+import adapter.section.RegionRecommendDynamicSection;
+import adapter.section.RegionRecommendHotSection;
+import adapter.section.RegionRecommendNewSection;
 import base.BaseActivity;
 import butterknife.BindView;
 import entity.region.RegionRecommendInfo;
@@ -153,13 +153,14 @@ public class AdvertisingActivity extends BaseActivity {
         mSectionedAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
 
         //添加广告推荐热门推荐section
-        mSectionedAdapter.addSection(new AdvertisingHotSection(this,recommends));
+        mSectionedAdapter.addSection(new RegionRecommendHotSection(this, ConstantUtil.ADVERTISING_RID,recommends));
 
         //添加广告推荐最新视频section
-        mSectionedAdapter.addSection(new AdvertisingNewSection(this,news));
+        mSectionedAdapter.addSection(new RegionRecommendNewSection(this, ConstantUtil.ADVERTISING_RID,news));
 
         //添加广告推荐全区动态section
-        mSectionedAdapter.addSection(new AdvertisingDynamicSection(this, dynamics));
+        mSectionedAdapter.addSection(new RegionRecommendDynamicSection(this, dynamics));
+        
         
         mSectionedAdapter.notifyDataSetChanged();
     }
