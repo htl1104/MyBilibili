@@ -87,7 +87,7 @@ public class HomePageFragment extends RxLazyFragment {
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setAdapter(mHomeAdapter);
         mSlidingTab.setViewPager(mViewPager);
-        mViewPager.setCurrentItem(1);//设置默认的显示item
+        mViewPager.setCurrentItem(5);//设置默认的显示item
     }
 
 

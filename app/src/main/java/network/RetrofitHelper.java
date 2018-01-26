@@ -12,6 +12,7 @@ import network.api.BiliAppService;
 import network.api.BiliGoService;
 import network.api.LiveService;
 import network.api.RankService;
+import network.api.SearchService;
 import network.api.VipService;
 import network.auxiliary.ApiConstants;
 import okhttp3.Cache;
@@ -76,6 +77,12 @@ public class RetrofitHelper {
 
         return createApi(VipService.class, ApiConstants.VIP_BASE_URL);
     }
+
+    public static SearchService getSearchAPI() {
+
+        return createApi(SearchService.class, ApiConstants.SEARCH_BASE_URL);
+    }
+
 
 
     /**
