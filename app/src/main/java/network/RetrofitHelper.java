@@ -11,6 +11,7 @@ import network.api.BiliApiService;
 import network.api.BiliAppService;
 import network.api.BiliGoService;
 import network.api.LiveService;
+import network.api.RankService;
 import network.api.VipService;
 import network.auxiliary.ApiConstants;
 import okhttp3.Cache;
@@ -48,6 +49,11 @@ public class RetrofitHelper {
     public static BiliApiService getBiliAPI() {
 
         return createApi(BiliApiService.class, ApiConstants.API_BASE_URL);
+    }
+
+    public static RankService getRankAPI() {
+
+        return createApi(RankService.class, ApiConstants.RANK_BASE_URL);
     }
 
     public static BiliGoService getBiliGoAPI() {

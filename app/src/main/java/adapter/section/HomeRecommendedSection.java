@@ -2,6 +2,7 @@ package adapter.section;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,8 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import module.entry.recommend.RecommendInfo;
-import module.home.LivePlayerActivity;
+import module.home.OriginalRankActivity;
+import module.home.live.LivePlayerActivity;
 import module.video.VideoDetailsActivity;
 import utils.DisplayUtil;
 import utils.LogDog;
@@ -189,8 +191,12 @@ public class HomeRecommendedSection extends StatelessSection {
         headerViewHolder.mTypeTv.setText(title);
         
         //排行榜
+        headerViewHolder.mTypeRankBtn.setOnClickListener(v -> mContext.startActivity(
+                new Intent(mContext, OriginalRankActivity.class)));
+      
+        //全区排行榜页面
 //        headerViewHolder.mTypeRankBtn.setOnClickListener(v -> mContext.startActivity(
-//                new Intent(mContext, OriginalRankActivity.class)));
+//                new Intent(mContext, AllareasRankActivity.class)));
 
         switch (type) {
             case TYPE_RECOMMENDED:

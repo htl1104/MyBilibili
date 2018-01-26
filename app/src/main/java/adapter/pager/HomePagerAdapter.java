@@ -9,10 +9,10 @@ import com.example.rxjava.myblibi.R;
 
 import module.home.attention.HomeAttentionFragment;
 import module.home.bangumi.HomeBangumiFragment;
-import module.home.HomeDiscoverFragment;
-import module.home.HomeLiveFragment;
-import module.home.HomeRecommendedFragment;
-import module.home.HomeRegionFragment;
+import module.home.discover.HomeDiscoverFragment;
+import module.home.live.HomeLiveFragment;
+import module.home.discover.HomeRecommendedFragment;
+import module.home.discover.HomeRegionFragment;
 
 
 /**

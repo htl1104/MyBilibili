@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import entity.live.LiveAppIndexInfo;
-import module.home.LivePlayerActivity;
+import module.home.live.LivePlayerActivity;
 import rx.Observable;
 import utils.LogDog;
 import widget.CircleImageView;

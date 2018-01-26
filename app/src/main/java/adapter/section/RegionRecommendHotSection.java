@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import entity.region.RegionRecommendInfo;
+import module.home.discover.AllareasRankActivity;
 import module.video.VideoDetailsActivity;
 import utils.ConstantUtil;
 import utils.NumberUtil;
@@ -95,11 +96,11 @@ public class RegionRecommendHotSection extends StatelessSection{
     private void startRankActivityById() {
 
         switch (rid) {
-         /*   case 13:
+          case 13:
                 //番剧 
                 AllareasRankActivity.launch((Activity) mContext, 0);
                 break;
-            case 1:
+              case 1:
                 //动画
                 AllareasRankActivity.launch((Activity) mContext, 1);
                 break;
@@ -142,7 +143,7 @@ public class RegionRecommendHotSection extends StatelessSection{
             case 11:
                 //电视剧
                 AllareasRankActivity.launch((Activity) mContext, 11);
-                break;*/
+                break;
         }
     
     }

@@ -1,4 +1,4 @@
-package module.home;
+package module.home.discover;
 
 import android.content.Intent;
 import android.content.res.AssetManager;

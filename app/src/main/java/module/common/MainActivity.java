@@ -26,7 +26,7 @@ import module.entry.IFavoritesFragment;
 import module.entry.OffLineDownloadActivity;
 import module.entry.SettingFragment;
 import module.entry.VipActivity;
-import module.home.HomePageFragment;
+import module.home.discover.HomePageFragment;
 import utils.ConstantUtil;
 import utils.PreferenceUtil;
 import utils.ToastUtil;

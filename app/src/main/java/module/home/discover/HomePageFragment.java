@@ -1,4 +1,4 @@
-package module.home;
+package module.home.discover;
 
 import android.app.Activity;
 import android.content.Intent;
