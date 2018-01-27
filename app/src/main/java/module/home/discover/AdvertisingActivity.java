@@ -125,7 +125,6 @@ public class AdvertisingActivity extends BaseActivity {
         RetrofitHelper.getBiliAppAPI()
                 .getRegionRecommends(ConstantUtil.ADVERTISING_RID)
                 .compose(bindToLifecycle())
-                .compose(bindToLifecycle())
                 .map(RegionRecommendInfo::getData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

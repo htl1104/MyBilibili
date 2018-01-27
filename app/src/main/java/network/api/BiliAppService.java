@@ -1,5 +1,6 @@
 package network.api;
 
+import entity.discover.ActivityCenterInfo;
 import entity.region.RegionDetailsInfo;
 import entity.region.RegionRecommendInfo;
 import entity.video.VideoDetailsInfo;
@@ -48,4 +49,11 @@ public interface BiliAppService {
     @GET("x/v2/region/show/child?build=3600")
     Observable<RegionDetailsInfo> getRegionDetails(@Query("rid") int rid);
 
+    /**
+     * 话動中心
+     */
+    @GET("event/getlist?device=phone&mobi_app=iphone")
+    Observable<ActivityCenterInfo> getActivityCenterList(
+            @Query("page") int page, @Query("pagesize") int pageSize);
+    
 }

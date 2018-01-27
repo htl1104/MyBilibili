@@ -121,6 +121,19 @@
         <!--原创排行榜界面-->
         <activity android:name="module.home.OriginalRankActivity"
                   android:screenOrientation="portrait"/>
+        
+        <!--话题中心界面-->
+        <activity android:name="module.home.discover.TopicCenterActivity"
+                  android:screenOrientation="portrait"/>
+        
+        <!--搜索界面-->
+        <activity android:name="module.home.discover.TotalStationSearchActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--活动中心界面-->
+        <activity android:name="module.home.discover.ActivityCenterActivity"
+                  android:screenOrientation="portrait"/>
+        
     </application>
     
 

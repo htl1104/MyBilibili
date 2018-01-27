@@ -1,5 +1,7 @@
 package module.home.discover;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -17,10 +19,15 @@ import java.util.List;
 
 import base.RxLazyFragment;
 import butterknife.BindView;
+import butterknife.OnClick;
 import entity.discover.HotSearchTag;
+import module.common.BrowserActivity;
+import module.entry.GameCentreActivity;
+import module.home.OriginalRankActivity;
 import network.RetrofitHelper;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import utils.ConstantUtil;
 
 /**
  * @author 小陈
@@ -44,7 +51,7 @@ public class HomeDiscoverFragment extends RxLazyFragment {
     @BindView(R.id.tv_more)
     TextView mMoreText;
 
-    private boolean isShowMore = true;
+    private boolean isShowMore = true;//查看更多的一种状态值
 
    private List<HotSearchTag.ListBean> hotSearchTags = new ArrayList<>();
 
@@ -98,6 +105,103 @@ public class HomeDiscoverFragment extends RxLazyFragment {
                 return mTags;
             }
         });
-        
+
+        mHideTagLayout.setAdapter(new TagAdapter<HotSearchTag.ListBean>(hotSearchTags) {
+
+            @Override
+            public View getView(FlowLayout parent, int position, HotSearchTag.ListBean listBean) {
+
+                TextView mTags = (TextView) LayoutInflater.from(getActivity())
+                        .inflate(R.layout.layout_tags_item, parent, false);
+                mTags.setText(listBean.getKeyword());
+               /* mTags.setOnClickListener(
+                        v -> TotalStationSearchActivity.launch(getActivity(), listBean.getKeyword()));*/
+
+                return mTags;
+            }
+        });
     }
+
+    /**
+     * 查看更多
+     */
+    @OnClick(R.id.more_layout)
+    void showAndHideMoreLayout(){
+        if (isShowMore) {
+            isShowMore = false;
+            mScrollView.setVisibility(View.VISIBLE);
+            mMoreText.setText("收起");
+            mTagFlowLayout.setVisibility(View.GONE);
+            Drawable upDrawable = getResources().getDrawable(R.drawable.ic_arrow_up_gray_round);
+            upDrawable.setBounds(0, 0, upDrawable.getMinimumWidth(), upDrawable.getMinimumHeight());
+            mMoreText.setCompoundDrawables(upDrawable, null, null, null);
+        } else {
+            isShowMore = true;
+            mScrollView.setVisibility(View.GONE);
+            mMoreText.setText("查看更多");
+            mTagFlowLayout.setVisibility(View.VISIBLE);
+            Drawable downDrawable = getResources().getDrawable(R.drawable.ic_arrow_down_gray_round);
+            downDrawable.setBounds(0, 0, downDrawable.getMinimumWidth(), downDrawable.getMinimumHeight());
+            mMoreText.setCompoundDrawables(downDrawable, null, null, null);
+        }
+    }
+
+    /**
+     * 话题中心
+     */
+    @OnClick(R.id.topic_center_layout)
+    void startTopicCenterActivity() {
+        startActivity(new Intent(getActivity(), TopicCenterActivity.class));  
+    }
+
+    /**
+     * 前往活动中心界面
+     */
+    @OnClick(R.id.activity_center_layout)
+    void startActivityCenterActivity() {
+        startActivity(new Intent(getActivity(), ActivityCenterActivity.class));
+    }
+
+    /**
+     * 前往全区排行榜界面
+     */
+    @OnClick(R.id.layout_all_rank)
+    void startAllRankActivity() {
+
+        startActivity(new Intent(getActivity(), AllareasRankActivity.class));
+    }
+
+    /**
+     * 前往原创排行榜界面
+     */
+    @OnClick(R.id.layout_original)
+    void startOriginalRankActivity() {
+
+        startActivity(new Intent(getActivity(), OriginalRankActivity.class));
+    }
+
+    /**
+     * 前往游戏中心界面
+     */
+    @OnClick(R.id.layout_game_center)
+    void startGameCenterActivity() {
+
+        startActivity(new Intent(getActivity(), GameCentreActivity.class));
+    }
+
+    /**
+     * 前往搜索界面
+     */
+    @OnClick(R.id.card_view)
+    void startSearchActivity() {
+
+        startActivity(new Intent(getActivity(), TotalStationSearchActivity.class));
+    }
+
+    @OnClick(R.id.layout_shop)
+    void startShop() {
+
+        BrowserActivity.launch(getActivity(), ConstantUtil.SHOP_URL, "bilibili - 周边商城");
+    }
+
 }

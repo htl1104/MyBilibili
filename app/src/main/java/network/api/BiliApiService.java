@@ -1,5 +1,6 @@
 package network.api;
 
+import entity.discover.ActivityCenterInfo;
 import entity.video.VideoCommentInfo;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -18,4 +19,11 @@ public interface BiliApiService {
     Observable<VideoCommentInfo> getVideoComment(
             @Query("aid") int aid,
             @Query("page") int page, @Query("pagesize") int pageSize, @Query("ver") int ver);
+
+    /**
+     * 活動中心
+     */
+    @GET("event/getlist?device=phone&mobi_app=iphone")
+    Observable<ActivityCenterInfo> getActivityCenterList(
+            @Query("page") int page, @Query("pagesize") int pageSize);
 }

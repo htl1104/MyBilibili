@@ -79,7 +79,7 @@
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/hide_scroll_view"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:overScrollMode="never"
             android:visibility="gone">
 
