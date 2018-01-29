@@ -14,39 +14,34 @@ import com.example.rxjava.myblibi.R;
 import java.util.List;
 
 import adapter.helper.AbsRecyclerViewAdapter;
-import entity.discover.ActivityCenterInfo;
+import entity.discover.TopicCenterInfo;
 
 /**
  * @author 小陈
- * @time 2018/1/27  10:49
- * @desc 活动中心的Adapter
+ * @time 2018/1/29  17:45
+ * @desc 话题中心的Adapter
  */
-public class ActivityCenterAdapter extends AbsRecyclerViewAdapter{
-    private List<ActivityCenterInfo.ListBean> activityCenters; 
+public class TopicCenterAdapter extends AbsRecyclerViewAdapter{
     
-    public ActivityCenterAdapter(RecyclerView recyclerView,List<ActivityCenterInfo.ListBean> activityCenters) {
+    private List<TopicCenterInfo.ListBean> topicCenters;
+    
+    public TopicCenterAdapter(RecyclerView recyclerView, List<TopicCenterInfo.ListBean> topicCenters) {
         super(recyclerView);
-        this.activityCenters=activityCenters;
+        this.topicCenters=topicCenters;
     }
 
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_activity_center, parent, false));
-    }
-
-    @Override
-    public int getItemCount() {
-        //LogDog.i("activityCenters="+activityCenters.size());
-        return activityCenters.size();
+                .inflate(R.layout.item_topic_center, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder) {
             ItemViewHolder viewHolder= (ItemViewHolder) holder;
-            ActivityCenterInfo.ListBean listBean = activityCenters.get(position);
+            TopicCenterInfo.ListBean listBean = topicCenters.get(position);
 
             Glide.with(getContext())
                     .load(listBean.getCover())
@@ -55,25 +50,21 @@ public class ActivityCenterAdapter extends AbsRecyclerViewAdapter{
                     .placeholder(R.drawable.bili_default_image_tv)//佔位圖
                     .dontAnimate()
                     .into(viewHolder.mImage);
-
+            
             viewHolder.mTitle.setText(listBean.getTitle());
-            if (listBean.getState() == 1) {
-                viewHolder.mState.setImageResource(R.drawable.ic_badge_end);
-            } else {
-                viewHolder.mState.setImageResource(R.drawable.ic_badge_going);
-            }
-            
-            
         }
     }
 
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder {
+    @Override
+    public int getItemCount() {
+        return topicCenters.size();
+    }
+
+    private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder {
 
         ImageView mImage;
 
         TextView mTitle;
-
-        ImageView mState;
 
 
         public ItemViewHolder(View itemView) {
@@ -81,7 +72,7 @@ public class ActivityCenterAdapter extends AbsRecyclerViewAdapter{
             super(itemView);
             mImage = $(R.id.item_image);
             mTitle = $(R.id.item_title);
-            mState = $(R.id.item_state);
         }
     }
+    
 }

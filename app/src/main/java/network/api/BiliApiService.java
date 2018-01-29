@@ -1,6 +1,7 @@
 package network.api;
 
 import entity.discover.ActivityCenterInfo;
+import entity.discover.TopicCenterInfo;
 import entity.video.VideoCommentInfo;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -26,4 +27,10 @@ public interface BiliApiService {
     @GET("event/getlist?device=phone&mobi_app=iphone")
     Observable<ActivityCenterInfo> getActivityCenterList(
             @Query("page") int page, @Query("pagesize") int pageSize);
+
+    /**
+     * 话题中心
+     */
+    @GET("topic/getlist?device=phone&mobi_app=iphone&page=1&pagesize=137")
+    Observable<TopicCenterInfo> getTopicCenterList();
 }
